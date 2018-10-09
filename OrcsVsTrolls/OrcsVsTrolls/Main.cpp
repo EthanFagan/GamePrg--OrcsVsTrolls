@@ -10,7 +10,10 @@ public:
 
 private:
 	int healthPoints = 0;
-
+	int magicPoints = 0;
+	int strength = 0;
+	int agility = 0;
+	int intelligence = 0;
 };
 
 class Orc : public Character {
