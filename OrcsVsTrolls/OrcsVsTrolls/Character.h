@@ -4,9 +4,9 @@
 
 class Character {
 public:
-	virtual void attack();
-	virtual void defend();
-	virtual void spell() = 0; //pure virtual function
+	//virtual void attack();
+	//virtual void defend();
+	//virtual void spell() = 0; //pure virtual function
 
 protected:
 	int healthPoints;
@@ -18,13 +18,14 @@ protected:
 
 class Orc : public Character {
 public:
-	void barrelRoll();
+	/*void barrelRoll();
 	void walk();
 	void fly();
+*/
 
 };
 
 class Troll : public Character {
 public:
-	void fly() { std::cout << "Average Dooper is flapping and flying" << std::endl; }
+ void fly() { std::cout << "Average Dooper is flapping and flying" << std::endl; }
 };
