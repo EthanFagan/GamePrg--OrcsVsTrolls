@@ -1,31 +1,25 @@
 #pragma once
 #include <iostream>
-#include "Character.h"
 
 class Character {
 public:
-	//virtual void attack();
-	//virtual void defend();
-	//virtual void spell() = 0; //pure virtual function
-
+	virtual void attack();
+	virtual void defend();
+	virtual void spell(); //pure virtual function
+	virtual void damaged();
+	virtual int getHealth();
+	virtual int getStrength();
+	virtual int getDefence();
+	virtual int getIntelligence();
+	virtual int getMagic();
 protected:
-	int healthPoints;
-	int magicPoints;
-	int strength;
-	int agility;
-	int intelligence;
+	int healthPoints = 0;
+	int magicPoints = 0;
+	int strength = 0;
+	int defence = 0;
+	int intelligence = 0;
+	bool isAlive = true;
 };
 
-class Orc : public Character {
-public:
-	/*void barrelRoll();
-	void walk();
-	void fly();
-*/
 
-};
 
-class Troll : public Character {
-public:
- void fly() { std::cout << "Average Dooper is flapping and flying" << std::endl; }
-};

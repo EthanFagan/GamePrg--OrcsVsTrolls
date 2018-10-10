@@ -1,43 +1,26 @@
 #pragma once
 #include <iostream>
-#include "Character.h"
+#include "Orc.h"
+#include "Troll.h"
 
 
 class Game
 {
 public:
+	Game();
 	void run();
 	void introduction();
 	void combat();
-	void turnChange();
 	void partyOrganization();
-	
+	void endGame();
 
 private:
-	bool gameOver = false;
-	//-------------------------
-	Orc reggie;
-	Orc snaggle;
-	Orc squee;
-	Orc rogrog;
-	//-------------------------
-	Troll blarg;
-	Troll blorg;
-	Troll glarg;
-	Troll harold;
-	//--------------------------
+	bool m_gameOver = false;
+	
+	Character * orcs[4];
 
-	enum OrcTurns {
-		ReggieTurn,
-		SnaggleTurn,
-		SqueeTurn,
-		RogRogTurn
-	};
+	Character * trolls[4];
 
-	enum trollTurns {
-		blargTurn,
-		blorgTurn,
-		glargTurn,
-		HaroldTurn
-	};
+	int noOfLivingTrolls;
+
 };
