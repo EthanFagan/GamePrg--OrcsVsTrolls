@@ -5,10 +5,10 @@
 class Orc : public Character {
 public:
 	Orc();
-	void attack();
+	int attack();
 	void defend();
-	void spell();
-    void damaged();
+	int spell();
+    void damaged(int t_damage);
 	int getHealth();
 	int getStrength();
 	int getDefence();

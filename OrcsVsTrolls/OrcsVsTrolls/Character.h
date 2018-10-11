@@ -3,10 +3,10 @@
 
 class Character {
 public:
-	virtual void attack();
+	virtual int attack();
 	virtual void defend();
-	virtual void spell(); //pure virtual function
-	virtual void damaged();
+	virtual int spell(); //pure virtual function
+	virtual void damaged(int t_damage);
 	virtual int getHealth();
 	virtual int getStrength();
 	virtual int getDefence();

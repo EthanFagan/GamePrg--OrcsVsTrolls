@@ -11,6 +11,7 @@ public:
 	void run();
 	void introduction();
 	void combat();
+	void enemyCombat();
 	void partyOrganization();
 	void endGame();
 

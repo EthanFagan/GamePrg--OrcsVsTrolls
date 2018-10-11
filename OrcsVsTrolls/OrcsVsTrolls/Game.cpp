@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include <time.h>
 
 Game::Game()
 {
@@ -12,31 +13,30 @@ Game::Game()
 	{
 		trolls[i] = new Troll;
 	}
+
 }
 
 void Game::run()
 {
-	
+	srand((unsigned)time(NULL));
+
 	introduction();
-	partyOrganization();
-	std::cout << "THE SUN RISES.. AND WITH IT COME THE TROLLS" << std::endl;
+	
+	std::cout << "THE SUN RISES.. AND WITH IT COMES THE TROLLS" << std::endl;
 	while (m_gameOver == false)
 	{
 		partyOrganization();
 		combat();
-		if (orcs[0]->getHealth() == 0 && orcs[1]->getHealth() == 0 && orcs[2]->getHealth() == 0 && orcs[3]->getHealth() == 0)
+		if (orcs[0]->getHealth() <= 0 && orcs[1]->getHealth() <= 0 && orcs[2]->getHealth() <= 0 && orcs[3]->getHealth() <= 0)
 		{
 			m_gameOver = true;
 		}
-		if (trolls[0]->getHealth() == 0 && trolls[1]->getHealth() == 0 && trolls[2]->getHealth() == 0 && trolls[3]->getHealth() == 0)
+		if (trolls[0]->getHealth() <= 0 && trolls[1]->getHealth() <= 0 && trolls[2]->getHealth() <= 0 && trolls[3]->getHealth() <= 0)
 		{
 			m_gameOver = true;
 		}
 	}
-	if (orcs[0]->getHealth() == 0 && orcs[1]->getHealth() == 0 && orcs[2]->getHealth() == 0 && orcs[3]->getHealth() == 0)
-	{
-
-	}
+	
 	endGame();
 }
 
@@ -51,7 +51,51 @@ void Game::introduction()
 
 void Game::combat()
 {
-	
+	for (int i = 0; i < 4; i++)
+	{
+		int playerChoice = -1;
+		while(playerChoice != 1 && playerChoice != 2 && playerChoice !=3)
+		{
+			std::cout << "What will Orc " << i + 1 << " do?\n" << " 1 = Attack\n 2 = Defend\n 3 = cast magic " << std::endl;
+			std::cin >> playerChoice;
+		}
+		if (playerChoice == 1)
+		{
+			int enemyChoice = -1;
+			std::cout << "which troll will he attack?" << std::endl;
+			std::cin >> enemyChoice;
+			int damage = orcs[i]->attack();
+			trolls[enemyChoice-1]->damaged(damage);
+			std::cout << "Troll " << enemyChoice << " takes " << damage << " points of damage" << std::endl;
+		}
+	    if (playerChoice == 2)
+		{
+			orcs[i]->defend();
+			std::cout << "Orc " << i + 1 << "s defence is now doubled until the end of the turn" << std::endl;
+		}
+		if (playerChoice == 3)
+		{
+			int enemyChoice = -1;
+			std::cout << "which troll will he attack?" << std::endl;
+			std::cin >> enemyChoice;
+			int damage = orcs[i]->spell();
+			trolls[enemyChoice-1]->damaged(damage);
+			std::cout << "Troll " << enemyChoice << " takes " << damage << " points of damage" << std::endl;
+		}
+	}
+}
+
+void Game::enemyCombat()
+{
+	for (int i = 0; i < 4; i++)
+	{
+		int target = rand() % 4 + 1;
+		int damage = trolls[i]->attack();
+		
+		orcs[target-1]->damaged(damage);
+
+		std::cout << "Orc " << target << " takes " << damage << " points of damage" << std::endl;
+	}
 }
 	
 
@@ -59,19 +103,28 @@ void Game::partyOrganization()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		std::cout << "Orc " << i << " has " << orcs[i]->getHealth() << " HP remaining" << std::endl;
-		std::cout << "Orc " << i << " has " << orcs[i]->getMagic() << " MP remaining" << std::endl;
+		std::cout << "Orc " << i +1 << " has " << orcs[i]->getHealth() << " HP remaining" << std::endl;
+		std::cout << "Orc " << i +1 << " has " << orcs[i]->getMagic() << " MP remaining" << std::endl;
 	}
 
 	for (int i = 0; i < 4; i++)
 	{
-		std::cout << "Troll " << i << " has " << trolls[i]->getHealth() << " HP remaining" << std::endl;
+		std::cout << "Troll " << i + 1 << " has " << trolls[i]->getHealth() << " HP remaining" << std::endl;
 	}
 }
 
 void Game::endGame()
 {
-	std::cout << "You won, sick" << std::endl;
+
+	if (orcs[0]->getHealth() == 0 && orcs[1]->getHealth() == 0 && orcs[2]->getHealth() == 0 && orcs[3]->getHealth() == 0)
+	{
+		std::cout << "everyone died, the end" << std::endl;
+	}
+	if (trolls[0]->getHealth() == 0 && trolls[1]->getHealth() == 0 && trolls[2]->getHealth() == 0 && trolls[3]->getHealth() == 0)
+	{
+		std::cout << "You won, sick" << std::endl;
+	}
+	
 }
 
 

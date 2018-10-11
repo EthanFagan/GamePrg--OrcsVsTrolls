@@ -1,8 +1,8 @@
 #include "Character.h"
 
-void Character::attack()
+int Character::attack()
 {
-
+	return 0;
 }
 
 void Character::defend()
@@ -10,11 +10,12 @@ void Character::defend()
 
 }
 
-void Character::spell()
+int Character::spell()
 {
+	return 0;
 }
 
-void Character::damaged()
+void Character::damaged(int t_damage)
 {
 }
 

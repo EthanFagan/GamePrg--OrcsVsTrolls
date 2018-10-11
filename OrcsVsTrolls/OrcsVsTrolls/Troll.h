@@ -4,8 +4,9 @@
 
 class Troll : public Character {
 public:
-	void attack();
-	void damaged();
+	Troll();
+	int attack();
+	void damaged(int t_damage);
 	int getHealth();
 	int getStrength();
 	int getDefence();

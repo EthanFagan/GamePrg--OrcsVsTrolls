@@ -1,12 +1,23 @@
 #include "Troll.h"
 
-void Troll::attack()
+Troll::Troll()
 {
-
+	 m_healthPoints = 30;
+	 m_magicPoints = 0;
+	 m_strength = 10;
+	 m_defence = 2;
+	 m_intelligence = 8;
+	 m_isAlive = true;
 }
 
-void Troll::damaged()
+int Troll::attack()
 {
+	return 0;
+}
+
+void Troll::damaged(int t_damage)
+{
+	m_healthPoints -= (t_damage / m_defence);
 }
 
 int Troll::getHealth()
