@@ -99,12 +99,24 @@ void Game::combat()
 			{
 				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
 				int enemyChoice = -1;
+
 				std::cout << "which troll will he attack?" << std::endl;
 				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
+
 				std::cin >> enemyChoice;
+
 				int damage = orcs[i]->attack();
-				trolls[enemyChoice - 1]->damaged(damage);
-				std::cout << "Troll " << enemyChoice << " takes " << damage << " points of damage" << std::endl;
+
+				if (trolls[enemyChoice - 1]->getLife() == true)
+				{
+					trolls[enemyChoice - 1]->damaged(damage);
+					std::cout << "Troll " << enemyChoice << " takes " << damage << " points of damage" << std::endl;
+				}
+				else
+				{
+					std::cout << "Target was already dead" << std::endl;
+				}
+				
 				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
 			}
 			//-----------------------------------------------Governs defending------------------------------------------------\\ 
@@ -112,7 +124,7 @@ void Game::combat()
 			{
 				orcs[i]->defend();
 				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
-				std::cout << "Orc " << i + 1 << "s defence is now doubled until the end of the turn" << std::endl;
+				std::cout << "Orc " << i + 1 << "s defence is now doubled" << std::endl;
 				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
 			}
 			//-----------------------------------------------Governs casting spells-------------------------------------------\\ 
@@ -124,8 +136,17 @@ void Game::combat()
 				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
 				std::cin >> enemyChoice;
 				int damage = orcs[i]->spell();
-				trolls[enemyChoice - 1]->damaged(damage);
-				std::cout << "Troll " << enemyChoice << " takes " << damage << " points of damage" << std::endl;
+
+				if (trolls[enemyChoice - 1]->getLife() == true)
+				{
+					trolls[enemyChoice - 1]->damaged(damage);
+					std::cout << "Troll " << enemyChoice << " takes " << damage << " points of damage" << std::endl;
+				}
+				else
+				{
+					std::cout << "Target was already dead" << std::endl;
+				}
+				
 				std::cout << "[][][][][][][][][][][[[][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
 			}
 		}
@@ -144,12 +165,20 @@ void Game::enemyCombat()
 			int target = rand() % 4 + 1;
 			int damage = trolls[i]->attack();
 
-			orcs[target - 1]->damaged(damage);
+			if (orcs[target - 1]->getLife() == true)
+			{
+				orcs[target - 1]->damaged(damage);
 
-			std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
-			std::cout << "Troll " << i + 1 << " Snarls and attacks Orc " << target << std::endl;
-			std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
-			std::cout << "Orc " << target << " takes " << damage << " points of damage" << std::endl;
+				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
+				std::cout << "Troll " << i + 1 << " Snarls and attacks Orc " << target << std::endl;
+				std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
+				std::cout << "Orc " << target << " takes " << damage << " points of damage" << std::endl;
+			}
+			else
+			{
+				std::cout << "The troll is distracted and does not take its turn" << std::endl;
+			}
+			
 			std::cout << "[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]" << std::endl;
 		}
 		

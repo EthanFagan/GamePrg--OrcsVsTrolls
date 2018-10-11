@@ -18,7 +18,7 @@ Troll::Troll()
 
 int Troll::attack()
 {
-	return 0;
+	return m_strength;
 }
 
 void Troll::damaged(int t_damage)
