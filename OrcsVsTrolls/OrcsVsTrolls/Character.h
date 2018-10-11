@@ -3,22 +3,23 @@
 
 class Character {
 public:
-	virtual int attack();
-	virtual void defend();
-	virtual int spell(); //pure virtual function
-	virtual void damaged(int t_damage);
-	virtual int getHealth();
-	virtual int getStrength();
-	virtual int getDefence();
-	virtual int getIntelligence();
-	virtual int getMagic();
+	virtual int attack();// returns the characters base damage
+	virtual void defend();// doubles characters defence
+	virtual int spell(); // returns trhe characters magic damage
+	virtual void damaged(int t_damage);// deals damage to character based on damage recieved
+	virtual int getHealth();// returns characters currente hp
+	virtual int getStrength();// returns characters current strength
+	virtual int getDefence();// returns characters current defence
+	virtual int getIntelligence();// returns characters current intelligence
+	virtual int getMagic();// returns characters current mp
+	virtual bool getLife();// returns whether character is alive
 protected:
-	int healthPoints = 0;
-	int magicPoints = 0;
-	int strength = 0;
-	int defence = 0;
-	int intelligence = 0;
-	bool isAlive = true;
+	int healthPoints = 0;//
+	int magicPoints = 0;//
+	int strength = 0;//
+	int defence = 0;//
+	int intelligence = 0;//
+	bool isAlive = true;//
 };
 
 

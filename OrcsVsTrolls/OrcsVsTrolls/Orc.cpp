@@ -1,4 +1,10 @@
 #include "Orc.h"
+// Author: Ethan Fagan
+// C00232277
+// Date commenced: 04/10/18
+// total time taken: 12 hours
+// Date completed : 10/10/18
+
 
 Orc::Orc()
 {
@@ -31,6 +37,11 @@ int Orc::spell()
 void Orc::damaged(int t_damage)
 {
 	m_healthPoints -= (t_damage / m_defence);
+	if (m_healthPoints <= 0)
+	{
+		m_isAlive = false;
+		std::cout << "You ally is struck with a fatal blow and falls dead" << std::endl;
+	}
 }
 
 int Orc::getHealth()
@@ -55,5 +66,10 @@ int Orc::getIntelligence()
 
 int Orc::getMagic()
 {
-	return 0;
+	return m_magicPoints;
+}
+
+bool Orc::getLife()
+{
+	return m_isAlive;
 }

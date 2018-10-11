@@ -5,17 +5,18 @@
 class Orc : public Character {
 public:
 	Orc();
-	int attack();
-	void defend();
-	int spell();
-    void damaged(int t_damage);
-	int getHealth();
-	int getStrength();
-	int getDefence();
-	int getIntelligence();
-	int getMagic();
+	int attack(); // returns the Orcs base damage
+	void defend();// doubles Orcs defence
+	int spell();// returns trhe Orcs magic damage
+    void damaged(int t_damage);// deals damage to Orc based on damage recieved
+	int getHealth();// returns Orc current hp
+	int getStrength();// returns Orcs current strength
+	int getDefence();// returns Orcs current defence
+	int getIntelligence();// returns Orcs current intelligence
+	int getMagic();// returns Orcs current mp
+	bool getLife();// returns whether Orc is alive
 protected:
-	std::string m_name = ("");
+	
 	int m_healthPoints;
 	int m_magicPoints;
 	int m_strength;

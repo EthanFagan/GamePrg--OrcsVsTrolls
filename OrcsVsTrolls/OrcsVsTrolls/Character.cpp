@@ -1,4 +1,10 @@
 #include "Character.h"
+// Author: Ethan Fagan
+// C00232277
+// Date commenced: 04/10/18
+// total time taken: 12 hours
+// Date completed : 10/10/18
+
 
 int Character::attack()
 {
@@ -42,4 +48,9 @@ int Character::getIntelligence()
 int Character::getMagic()
 {
 	return 0;
+}
+
+bool Character::getLife()
+{
+	return false;
 }
